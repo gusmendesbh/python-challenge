@@ -39,7 +39,7 @@ with open(csvPath, 'r') as csvFile:
     print('-------------------------')
     print('Total Months: ' + str(rowNumber))
     print('Total: $' + str(rowTotal))
-    print('Average Change: $' + str(averageCharge))
+    print(f'Average Change: $ {averageCharge:.2f}')
     print('Greatest Increase in Profits: ' +
           increaseMonth + '($' + str(greatestIncrease) + ")")
     print('Greatest Decrease in Profits: ' +
@@ -51,7 +51,7 @@ with open("analysis.txt", 'w') as txtFile:
     print('-------------------------', file=txtFile)
     print('Total Months: ' + str(rowNumber), file=txtFile)
     print('Total: $' + str(rowTotal), file=txtFile)
-    print('Average Change: $' + str(averageCharge), file=txtFile)
+    print(f'Average Change: $ {averageCharge:.2f}', file=txtFile)
     print('Greatest Increase in Profits: ' +
           increaseMonth + '($' + str(greatestIncrease) + ")", file=txtFile)
     print('Greatest Decrease in Profits: ' +
