@@ -1,5 +1,8 @@
+# importing required libraries
 import os
 import csv
+
+# declaring necessary variables
 rowNumber = 0
 rowTotal = 0
 averageCharge = 0
@@ -8,13 +11,17 @@ increaseMonth = " "
 greatestDecrease = 0
 decreaseMonth = " "
 
+# setting the cross platform csv path
 csvPath = os.path.join("..", "Resources", "budget_data.csv")
 
+# initiating the file handler
 with open(csvPath, 'r') as csvFile:
     csvReader = csv.reader(csvFile, delimiter=',')
 
+    # storing the header
     csvHeader = next(csvReader)
 
+    # looping throught the file to read and count data
     for row in csvReader:
         rowNumber += 1
         rowTotal = rowTotal + int(row[1])
@@ -27,6 +34,7 @@ with open(csvPath, 'r') as csvFile:
             decreaseMonth = row[0]
             greatestDecrease = row[1]
 
+    # printing results on terminal
     print('Financial Analysis')
     print('-------------------------')
     print('Total Months: ' + str(rowNumber))
@@ -37,7 +45,7 @@ with open(csvPath, 'r') as csvFile:
     print('Greatest Decrease in Profits: ' +
           decreaseMonth + '($' + str(greatestDecrease) + ")")
 
-
+# printing results on txt file
 with open("analysis.txt", 'w') as txtFile:
     print('Financial Analysis', file=txtFile)
     print('-------------------------', file=txtFile)
