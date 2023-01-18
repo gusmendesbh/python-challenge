@@ -54,13 +54,6 @@ for i in range(1, len(rowsList)):
 # calculating average change
 averageChange = (sum(totalIncrease)/(totalRows-1))
 
-# parsing the month name
-for i in range(len(rowsList)):
-    if int(rowsList[i][1]) == greatestDecrease:
-        decreaseMonth = rowsList[i]
-    elif int(rowsList[i][1]) == greatestIncrease:
-        increaseMonth = rowsList[i]
-
 # printing results on terminal
 print('Financial Analysis')
 print('-------------------------')
