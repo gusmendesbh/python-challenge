@@ -34,13 +34,25 @@ with open(csvPath, 'r') as csvFile:
         rowNumber.append(row[1])
 totalRows = len(rowNumber)
 
-# calculating total, increase, decrease and average change
-for i in range(len(rowsList)):
+# creating list of increases
+for i in range(1, len(rowsList)):
     increase = int(rowNumber[i]) - int(rowNumber[i-1])
     totalIncrease.append(increase)
+
+# fetching the greatests increase and decrease
 greatestDecrease = min(totalIncrease)
 greatestIncrease = max(totalIncrease)
-averageChange = (sum(totalIncrease)/totalRows)
+
+# matching increase to months
+for i in range(1, len(rowsList)):
+    increase = int(rowNumber[i]) - int(rowNumber[i-1])
+    if increase == greatestIncrease:
+        increaseMonth = rowsList[i][0]
+    if increase == greatestDecrease:
+        decreaseMonth = rowsList[i][0]
+
+# calculating average change
+averageChange = (sum(totalIncrease)/(totalRows-1))
 
 # parsing the month name
 for i in range(len(rowsList)):
@@ -56,9 +68,9 @@ print(f'Total Months: {totalRows}')
 print('Total: $' + str(rowTotal))
 print(f'Average Change: $ {averageChange:.2f}')
 print('Greatest Increase in Profits: ' +
-      increaseMonth + '($' + str(greatestIncrease) + ")")
+      increaseMonth + ' ($' + str(greatestIncrease) + ")")
 print('Greatest Decrease in Profits: ' +
-      decreaseMonth + '($' + str(greatestDecrease) + ")")
+      decreaseMonth + ' ($' + str(greatestDecrease) + ")")
 
 # printing results on txt file
 with open("analysis.txt", 'w') as txtFile:
@@ -68,7 +80,7 @@ with open("analysis.txt", 'w') as txtFile:
     print('Total: $' + str(rowTotal), file=txtFile)
     print(f'Average Change: $ {averageChange:.2f}', file=txtFile)
     print('Greatest Increase in Profits: ' +
-          increaseMonth + '($' + str(greatestIncrease) + ")", file=txtFile)
+          increaseMonth + ' ($' + str(greatestIncrease) + ")", file=txtFile)
     print('Greatest Decrease in Profits: ' +
-          decreaseMonth + '($' + str(greatestDecrease) + ")", file=txtFile)
+          decreaseMonth + ' ($' + str(greatestDecrease) + ")", file=txtFile)
 txtFile.close()
